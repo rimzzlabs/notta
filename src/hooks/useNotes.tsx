@@ -1,38 +1,26 @@
+import * as atoms from '@/app/store'
+
 import { Note } from 'dicoding-react-notes'
-import { useState } from 'react'
+import { useAtom } from 'jotai'
 
 const useNotes = () => {
-  const [notes, setNotes] = useState<Note[]>([])
-  const [filteredNote, setFilteredNote] = useState<Note[]>([])
-  const [archivedNote, setArchivedNote] = useState<Note[]>([])
+  const [notes, setNotes] = useAtom(atoms.notes)
+  const [filteredNote, setFilteredNote] = useAtom(atoms.filteredNotes)
 
   // accept note to be added to note state
   const addNote = (note: Note) => setNotes((prevState) => [...prevState, note])
 
   // remove note from the
-  const removeNote = (id: string | number) => {
-    const filterCurrentNote = (note: Note[]) => note.filter((n) => n.id !== id)
-
-    setFilteredNote(filterCurrentNote)
-    setArchivedNote(filterCurrentNote)
-    setNotes(filterCurrentNote)
-  }
+  const removeNote = (id: string | number) => setNotes((prevState) => prevState.filter((note) => note.id !== id))
 
   const filterNote = (query: string) =>
     setFilteredNote(notes.filter((n) => n.title.toLowerCase().includes(query.toLowerCase())))
 
-  const archiveNote = (note: Note) => {
-    setArchivedNote((prevState) => [...prevState, note])
-    setNotes((prevState) => prevState.filter((n) => n.title !== note.title))
-  }
-
   return {
     notes,
     filteredNote,
-    archivedNote,
-    addNote,
     filterNote,
-    archiveNote,
+    addNote,
     removeNote
   }
 }

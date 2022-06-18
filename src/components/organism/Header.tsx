@@ -4,7 +4,7 @@ import { twclsx } from '@/utils'
 
 const Header: React.FunctionComponent = () => {
   return (
-    <header className={twclsx('fixed inset-x-0 top-0', 'bg-main-50 dark:bg-main-900')}>
+    <header className={twclsx('fixed inset-x-0 top-0 z-50', 'bg-main-50 dark:bg-main-900')}>
       <div
         className={twclsx(
           'layout',

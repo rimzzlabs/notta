@@ -2,19 +2,21 @@ import { twclsx } from '@/utils'
 
 import { createElement } from 'react'
 
-type InputProps = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+type InputProps = { pseudoElement?: boolean } & React.DetailedHTMLProps<
+  React.InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+>
 
-const Input: React.FunctionComponent<InputProps> = ({ className: classes, children, ...props }) => {
+const Input: React.FunctionComponent<InputProps> = ({ className: classes, ...props }) => {
   const className = twclsx(
-    'inline-flex p-2 rounded outline-none',
-    'border transition-all',
-    'border-main-300 dark:border-main-600',
-    'placeholder:dark:text-main-500',
-    'bg-white dark:bg-main-800',
+    'inline-flex p-2 outline-none',
+    'border border-main-900 dark:border-main-100',
+    'placeholder:dark:text-main-200',
+    'bg-white dark:bg-main-900',
     classes
   )
 
-  return createElement('input', { ...props, type: props.type ? props.type : 'text', className }, children)
+  return createElement('input', { ...props, autoCorrect: 'off', type: props.type ? props.type : 'text', className })
 }
 
 export default Input

@@ -1,13 +1,17 @@
-import Button from '@/components/atoms/Button'
+import { Searchbar } from '@/components/mollecules'
+import { NotesEditor } from '@/components/organism'
 
 import { twclsx } from '@/utils'
 
 const IndexPage: React.FunctionComponent = () => {
   return (
-    <div>
-      <h1>Hello world</h1>
-      <Button className={twclsx('py-2 px-4')}>Click Me</Button>
-    </div>
+    <>
+      <Searchbar />
+      <section className={twclsx('py-4 md:py-8')}>
+        <h2 className={twclsx('my-4')}>Create a new Note</h2>
+        <NotesEditor />
+      </section>
+    </>
   )
 }
 

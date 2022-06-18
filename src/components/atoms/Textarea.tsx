@@ -7,11 +7,9 @@ type TextareaProps = React.DetailedHTMLProps<React.TextareaHTMLAttributes<HTMLTe
 const Textarea: React.FunctionComponent<TextareaProps> = ({ className: classes, children, ...props }) => {
   const className = twclsx(
     'inline-flex w-full',
-    'p-2 rounded outline-none resize-none h-40',
-    'border transition-all overflow-y-auto',
-    'border-main-300 dark:border-main-600',
-    'placeholder:dark:text-main-500',
-    'bg-white dark:bg-main-800',
+    'p-2 outline-none resize-none',
+    'placeholder:dark:text-main-200',
+    'bg-transparent',
     classes
   )
 

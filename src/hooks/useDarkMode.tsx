@@ -1,40 +1,16 @@
-import { useEffect, useState } from 'react'
+import * as atoms from '@/app/store'
 
-type Theme = 'light' | 'dark'
+import { useAtom } from 'jotai'
+import { useEffect } from 'react'
 
 const useDarkMode = () => {
-  const setInitialTheme = (): Theme => {
-    const localStorageTheme = localStorage.getItem('theme') as Theme | null
-    if (!localStorageTheme) {
-      return 'light'
-    }
-
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches && localStorageTheme === 'dark') {
-      return 'dark'
-    }
-
-    return 'light'
-  }
-
-  const [theme, setTheme] = useState<Theme>(setInitialTheme())
+  const [theme, setTheme] = useAtom(atoms.theme)
 
   const toggleTheme = () => setTheme((prevState) => (prevState === 'dark' ? 'light' : 'dark'))
 
-  const saveToLocalStorage = () => localStorage.setItem('theme', theme)
-
   useEffect(() => {
-    saveToLocalStorage()
-    const html = document.documentElement
-
-    if (theme === 'light') {
-      html.classList.add(theme)
-      html.classList.remove('dark')
-      html.style.colorScheme = theme
-    } else {
-      html.classList.add(theme)
-      html.classList.remove('light')
-      html.style.colorScheme = theme
-    }
+    document.documentElement.className = theme
+    document.documentElement.style.colorScheme = theme
   }, [theme])
 
   return {

@@ -31,9 +31,9 @@
     @apply w-[0.5em];
   }
   textarea::-webkit-scrollbar-thumb {
-    @apply bg-primary-500;
+    @apply bg-main-900 dark:bg-main-200;
   }
   textarea::-webkit-scrollbar-track {
-    @apply bg-neutral-100 dark:bg-main-800;
+    @apply bg-transparent;
   }
 }
