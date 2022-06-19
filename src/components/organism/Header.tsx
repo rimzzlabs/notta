@@ -1,4 +1,4 @@
-import { ToggleDarkMode } from '@/components/mollecules'
+import { ToggleDarkMode, ToggleDisclaimer } from '@/components/mollecules'
 
 import { twclsx } from '@/utils'
 
@@ -15,7 +15,10 @@ const Header: React.FunctionComponent = () => {
       >
         <p className={twclsx('text-2xl md:text-4xl font-bold', 'text-primary-500 dark:text-primary-400')}>Notta.</p>
 
-        <ToggleDarkMode />
+        <div className={twclsx('inline-flex items-center gap-4')}>
+          <ToggleDisclaimer />
+          <ToggleDarkMode />
+        </div>
       </div>
     </header>
   )
