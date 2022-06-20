@@ -24,7 +24,7 @@ const useNotes = () => {
     if (query.length > 0) {
       setFilteredNotes(notes.filter((n) => n.title.toLowerCase().includes(query.toLowerCase())))
     }
-  }, [query])
+  }, [query, notes])
 
   return {
     query,
